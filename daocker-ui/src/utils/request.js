@@ -1,7 +1,7 @@
 // 封装axios请求
 import axios from "axios";
 
-export const baseURL = window.process.env.baseURL || "http://localhost:3000";
+export const baseURL = "http://localhost:3000";
 
 // 创建axios实例
 const service = axios.create({
