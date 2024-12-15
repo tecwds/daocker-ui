@@ -1,4 +1,4 @@
-FROM node:lts-bookworm as builder
+FROM dockerproxy.net/library/node:lts-bookworm as builder
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ RUN yarn install --registry=https://registry.npmmirror.com && yarn build
 
 # --------------------------------------------------------
 
-FROM nginx:latest as prod
+FROM dockerproxy.net/library/nginx:latest as prod
 
 COPY --from=builder /app/dist /usr/share/nginx/html
 
