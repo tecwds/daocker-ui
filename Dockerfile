@@ -1,12 +1,20 @@
-FROM m.daocloud.io/node:lts-bookworm as builder
+FROM m.daocloud.io/node as prepare
+
+WORKDIR /app
+
+# 使用国内镜像，加快速度
+RUN yarn install --registry=https://registry.npmmirror.com 
+
+
+FROM m.daocloud.io/node as builder
 
 WORKDIR /app
 
 # 复制源代码
 COPY daocker-ui .
-
-# 使用国内镜像，加快速度
-RUN yarn install --registry=https://registry.npmmirror.com && yarn build
+COPY --from=prepare /app/node_modules /app/node_modules
+COPY --from=prepare /app/*.json  .
+RUN yarn && yarn build
 
 # --------------------------------------------------------
 
