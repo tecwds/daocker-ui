@@ -1,7 +1,8 @@
 // 封装axios请求
 import axios from "axios";
 
-export const baseURL = "http://localhost:3000/api";
+// export const baseURL = "http://localhost:3000/api";
+export const baseURL = "http://192.168.56.5:30301/api";
 
 // 创建axios实例
 const service = axios.create({
